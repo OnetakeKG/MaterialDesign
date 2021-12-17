@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialDesign">
         <activity
-            android:name=".view.MainActivity"
+            android:name="net.nov.materialdesign.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

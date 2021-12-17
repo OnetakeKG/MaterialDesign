@@ -4,9 +4,10 @@ package net.nov.materialdesign.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.viewbinding.BuildConfig
+
 import net.nov.materialdesign.repository.PictureOfTheDayResponseData
 import net.nov.materialdesign.repository.PictureOfTheDayRetrofitImpl
+import net.nov.materialdesign.BuildConfig
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,7 +24,7 @@ class PictureOfTheDayViewModel(
 
     fun sendServerRequest() {
         liveDataForViewToObserve.value = PictureOfTheDayState.Loading(0)
-        val apiKey: String = "SJhJ2DBsKXi2Xbmul0nEVjTzbZPb6LsDvlaENgep"
+        val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
             liveDataForViewToObserve.value = PictureOfTheDayState.Error(Throwable("wrong key"))
         } else {
@@ -44,7 +45,7 @@ class PictureOfTheDayViewModel(
         }
 
         override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
-            //TODO("уловить ошибку")
+
         }
 
     }

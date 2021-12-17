@@ -1,23 +1,26 @@
 package net.nov.materialdesign.view.chips
 
-import net.nov.materialdesign.databinding.FragmentChipsBinding
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 
 import com.google.android.material.chip.Chip
+import net.nov.materialdesign.R
+import net.nov.materialdesign.databinding.FragmentSettingsBinding
 
 
-class ChipsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
 
-    private var _binding: FragmentChipsBinding? = null
-    val binding: FragmentChipsBinding
+    private var _binding: FragmentSettingsBinding? = null
+    val binding: FragmentSettingsBinding
         get() {
             return _binding!!
         }
@@ -32,17 +35,32 @@ class ChipsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentChipsBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            group.findViewById<Chip>(checkedId)?.let{
-                Toast.makeText(context,"choose ${it.text}",Toast.LENGTH_SHORT).show()
+            group.findViewById<Chip>(checkedId)?.let {
+                Toast.makeText(context, "choose ${it.text}", Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_one -> {
+                    Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
+
+                }
+                R.id.navigation_two -> {
+                    Toast.makeText(context, "2", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            true
         }
 
         binding.chipForDelete.setOnCloseIconClickListener {
@@ -51,9 +69,11 @@ class ChipsFragment : Fragment() {
         }
     }
 
+
+
     companion object {
         @JvmStatic
         fun newInstance() =
-            ChipsFragment()
+            SettingsFragment()
     }
 }

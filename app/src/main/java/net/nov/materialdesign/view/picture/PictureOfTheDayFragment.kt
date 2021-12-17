@@ -1,7 +1,6 @@
 package net.nov.materialdesign.view.picture
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -20,7 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.FragmentMainBinding
 import net.nov.materialdesign.view.MainActivity
-import net.nov.materialdesign.view.chips.ChipsFragment
+import net.nov.materialdesign.view.chips.SettingsFragment
 import net.nov.materialdesign.viewmodel.PictureOfTheDayState
 import net.nov.materialdesign.viewmodel.PictureOfTheDayViewModel
 
@@ -85,7 +84,8 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun renderData(state: PictureOfTheDayState) {
         when (state) {
-            is PictureOfTheDayState.Error -> {//TODO(ДЗ)
+            is PictureOfTheDayState.Error -> {
+                binding.imageView.load(R.drawable.ic_load_error_vector)
             }
             is PictureOfTheDayState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
@@ -98,6 +98,8 @@ class PictureOfTheDayFragment : Fragment() {
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.ic_no_photo_vector)
                 }
+                val explanation = pictureOfTheDayResponseData.explanation
+                binding.textView.text = explanation.toString()
             }
         }
     }
@@ -128,7 +130,7 @@ class PictureOfTheDayFragment : Fragment() {
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
                 .replace(
                     R.id.container,
-                    ChipsFragment.newInstance()
+                    SettingsFragment.newInstance()
                 ).commit()
             android.R.id.home -> BottomNavigationDrawerFragment().show(
                 requireActivity().supportFragmentManager,

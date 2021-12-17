@@ -1,20 +1,14 @@
 package net.nov.materialdesign.view.picture
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import coil.load
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.BottomNavigationLayoutBinding
+import net.nov.materialdesign.view.chips.SettingsFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -37,10 +31,20 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
             when (menuItem.itemId) {
                 R.id.navigation_one -> {
-                    Toast.makeText(context,"1",Toast.LENGTH_SHORT).show()
+                    val fragment =
+                        SettingsFragment()
+                    val transaction: FragmentTransaction =
+                        requireActivity().supportFragmentManager.beginTransaction()
+                    transaction.replace(
+                        R.id.container,
+                        fragment
+                    )
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+
                 }
                 R.id.navigation_two -> {
-                    Toast.makeText(context,"2",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "2", Toast.LENGTH_SHORT).show()
                 }
             }
 

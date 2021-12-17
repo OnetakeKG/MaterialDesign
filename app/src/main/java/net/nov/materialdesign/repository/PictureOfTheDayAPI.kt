@@ -8,4 +8,5 @@ interface PictureOfTheDayAPI {
 
     @GET("planetary/apod")
     fun getPictureOfTheDay(@Query("api_key") apiKey:String):Call<PictureOfTheDayResponseData>
+    fun getExplanation (@Query("explanation") explanation:String):Call<PictureOfTheDayResponseData>
 }
