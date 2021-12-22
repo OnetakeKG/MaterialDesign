@@ -6,22 +6,24 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.FragmentMainBinding
 import net.nov.materialdesign.view.MainActivity
+import net.nov.materialdesign.view.api.ApiActivity
+import net.nov.materialdesign.view.api.ApiBottomActivity
 import net.nov.materialdesign.view.chips.SettingsFragment
 import net.nov.materialdesign.viewmodel.PictureOfTheDayState
 import net.nov.materialdesign.viewmodel.PictureOfTheDayViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -55,37 +57,43 @@ class PictureOfTheDayFragment : Fragment() {
         }
 
         val behavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
-        behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+        behavior.state = BottomSheetBehavior.STATE_HIDDEN
 
 
         behavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    /* BottomSheetBehavior.STATE_DRAGGING -> TODO("not implemented")
-                     BottomSheetBehavior.STATE_COLLAPSED -> TODO("not implemented")
-                     BottomSheetBehavior.STATE_EXPANDED -> TODO("not implemented")
-                     BottomSheetBehavior.STATE_HALF_EXPANDED -> TODO("not implemented")
-                     BottomSheetBehavior.STATE_HIDDEN -> TODO("not implemented")
-                     BottomSheetBehavior.STATE_SETTLING -> TODO("not implemented")*/
-                }
+
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 Log.d("mylogs", "$slideOffset slideOffset")
-
-                //TODO("not implemented")
             }
         })
+
+        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.yestrday ->{viewModel.sendServerRequest(takeDate(-1))}
+                R.id.today ->{viewModel.sendServerRequest()}
+            }
+        }
 
         setBottomAppBar()
 
     }
 
+    private fun takeDate(count: Int): String {
+        val currentDate = Calendar.getInstance()
+        currentDate.add(Calendar.DAY_OF_MONTH, count)
+        val format1 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        format1.timeZone = TimeZone.getTimeZone("EST")
+        return format1.format(currentDate.time)
+    }
+
+
     private fun renderData(state: PictureOfTheDayState) {
         when (state) {
-            is PictureOfTheDayState.Error -> {
-                binding.imageView.load(R.drawable.ic_load_error_vector)
+            is PictureOfTheDayState.Error -> { state.error.message
             }
             is PictureOfTheDayState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
@@ -98,8 +106,6 @@ class PictureOfTheDayFragment : Fragment() {
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.ic_no_photo_vector)
                 }
-                val explanation = pictureOfTheDayResponseData.explanation
-                binding.textView.text = explanation.toString()
             }
         }
     }
@@ -126,7 +132,12 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
+            R.id.api_activity -> {
+                startActivity(Intent(requireContext(), ApiActivity::class.java))
+            }
+            R.id.api_bottom_activity -> {
+                startActivity(Intent(requireContext(), ApiBottomActivity::class.java))
+            }
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
                 .replace(
                     R.id.container,

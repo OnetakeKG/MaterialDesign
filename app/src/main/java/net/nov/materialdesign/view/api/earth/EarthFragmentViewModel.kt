@@ -1,4 +1,4 @@
-package net.nov.materialdesign.viewmodel
+package net.nov.materialdesign.view.api.earth
 
 
 import androidx.lifecycle.LiveData
@@ -12,29 +12,29 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class PictureOfTheDayViewModel(
-    private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayState> = MutableLiveData(),
+class EarthFragmentViewModel(
+    private val liveDataForViewToObserve: MutableLiveData<EarthFragmentState> = MutableLiveData(),
     private val retrofitImpl: PictureOfTheDayRetrofitImpl = PictureOfTheDayRetrofitImpl()
 ) : ViewModel() {
-    fun getData(): LiveData<PictureOfTheDayState> {
+    fun getData(): LiveData<EarthFragmentState> {
         return liveDataForViewToObserve
     }
 
     fun sendServerRequest() {
-        liveDataForViewToObserve.value = PictureOfTheDayState.Loading(0)
+        liveDataForViewToObserve.value = EarthFragmentState.Loading(0)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
-            liveDataForViewToObserve.value = PictureOfTheDayState.Error(Throwable("wrong key"))
+            liveDataForViewToObserve.value = EarthFragmentState.Error(Throwable("wrong key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(callback)
         }
     }
 
     fun sendServerRequest(date:String) {
-        liveDataForViewToObserve.value = PictureOfTheDayState.Loading(0)
+        liveDataForViewToObserve.value = EarthFragmentState.Loading(0)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
-            liveDataForViewToObserve.value = PictureOfTheDayState.Error(Throwable("wrong key"))
+            liveDataForViewToObserve.value = EarthFragmentState.Error(Throwable("wrong key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey,date).enqueue(callback)
         }
@@ -46,14 +46,14 @@ class PictureOfTheDayViewModel(
             response: Response<PictureOfTheDayResponseData>
         ) {
             if(response.isSuccessful&&response.body()!=null){
-                liveDataForViewToObserve.value = PictureOfTheDayState.Success(response.body()!!)
+                liveDataForViewToObserve.value = EarthFragmentState.Success(response.body()!!)
             }else{
-                liveDataForViewToObserve.value = PictureOfTheDayState.Error(IllegalStateException("Ошибка"))
+                liveDataForViewToObserve.value = EarthFragmentState.Error(IllegalStateException("Ошибка"))
             }
         }
 
         override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
-            liveDataForViewToObserve.value = PictureOfTheDayState.Error(IllegalStateException("onFailure"))
+            liveDataForViewToObserve.value = EarthFragmentState.Error(IllegalStateException("onFailure"))
         }
 
     }

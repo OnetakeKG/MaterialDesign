@@ -9,6 +9,13 @@ data class PictureOfTheDayResponseData(
     @field:SerializedName("media_type") val mediaType: String?,
     @field:SerializedName("title") val title: String?,
     @field:SerializedName("url") val url: String?,
-    @field:SerializedName("hdurl") val hdurl: String?
+    @field:SerializedName("hdurl") val hdurl: String?,
+
+
+    val identifier: String,
+    val caption: String,
+    val image: String,
+    val version: String,
+    val date1: String
 
 )

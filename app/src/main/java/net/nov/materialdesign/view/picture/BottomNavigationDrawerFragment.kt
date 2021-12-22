@@ -1,14 +1,13 @@
 package net.nov.materialdesign.view.picture
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.BottomNavigationLayoutBinding
-import net.nov.materialdesign.view.chips.SettingsFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -31,20 +30,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
             when (menuItem.itemId) {
                 R.id.navigation_one -> {
-                    val fragment =
-                        SettingsFragment()
-                    val transaction: FragmentTransaction =
-                        requireActivity().supportFragmentManager.beginTransaction()
-                    transaction.replace(
-                        R.id.container,
-                        fragment
-                    )
-                    transaction.addToBackStack(null)
-                    transaction.commit()
-
+                    Toast.makeText(context,"1",Toast.LENGTH_SHORT).show()
                 }
                 R.id.navigation_two -> {
-                    Toast.makeText(context, "2", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"2",Toast.LENGTH_SHORT).show()
                 }
             }
 
