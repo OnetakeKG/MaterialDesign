@@ -52,6 +52,7 @@ class PictureOfTheDayViewModel(
             }
         }
 
+        //https://material.io/components/bottom-navigation/android#theming-a-bottom-navigation-bar
         override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
             liveDataForViewToObserve.value = PictureOfTheDayState.Error(IllegalStateException("onFailure"))
         }

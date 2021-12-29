@@ -16,6 +16,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.FragmentMainBinding
+import net.nov.materialdesign.databinding.FragmentMainStartBinding
 import net.nov.materialdesign.view.MainActivity
 import net.nov.materialdesign.view.api.ApiActivity
 import net.nov.materialdesign.view.api.ApiBottomActivity
@@ -27,8 +28,8 @@ import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
-    val binding: FragmentMainBinding
+    private var _binding: FragmentMainStartBinding? = null
+    val binding: FragmentMainStartBinding
         get() {
             return _binding!!
         }
@@ -115,7 +116,7 @@ class PictureOfTheDayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentMainStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -136,7 +137,7 @@ class PictureOfTheDayFragment : Fragment() {
                 startActivity(Intent(requireContext(), ApiActivity::class.java))
             }
             R.id.api_bottom_activity -> {
-                startActivity(Intent(requireContext(), ApiBottomActivity::class.java))
+                startActivity(Intent(requireContext(),ApiBottomActivity::class.java))
             }
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
                 .replace(

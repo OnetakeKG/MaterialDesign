@@ -8,6 +8,9 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.BottomNavigationLayoutBinding
+import net.nov.materialdesign.view.constraint.ConstraintFragment
+import net.nov.materialdesign.view.coordinator.CoordinatorFragment
+import net.nov.materialdesign.view.motion.MotionFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -30,13 +33,19 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
             when (menuItem.itemId) {
                 R.id.navigation_one -> {
-                    Toast.makeText(context,"1",Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, ConstraintFragment.newInstance()).addToBackStack("").commit()
                 }
                 R.id.navigation_two -> {
-                    Toast.makeText(context,"2",Toast.LENGTH_SHORT).show()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, CoordinatorFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.navigation_third -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, MotionFragment.newInstance()).addToBackStack("").commit()
                 }
             }
-
+            dismiss()
             true
         }
     }

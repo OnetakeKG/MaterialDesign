@@ -18,8 +18,6 @@ class PictureOfTheDayRetrofitImpl {
     fun getRetrofitImpl():PictureOfTheDayAPI{
         return api
     }
-    fun getEPIC(apiKey: String, epicCallback: Callback<List<EarthEpicServerResponseData>>) {
-        api.getEPIC(apiKey).enqueue(epicCallback)
-    }
+
 
 }

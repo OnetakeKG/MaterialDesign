@@ -58,7 +58,9 @@ class SettingsFragment : Fragment() {
                 R.id.navigation_two -> {
                     Toast.makeText(context,"2",Toast.LENGTH_SHORT).show()
                 }
-
+                R.id.navigation_third -> {
+                    Toast.makeText(context,"3",Toast.LENGTH_SHORT).show()
+                }
             }
             true
         }
