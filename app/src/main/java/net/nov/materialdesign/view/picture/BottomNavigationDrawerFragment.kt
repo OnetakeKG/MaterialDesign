@@ -1,5 +1,6 @@
 package net.nov.materialdesign.view.picture
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import net.nov.materialdesign.R
 import net.nov.materialdesign.databinding.BottomNavigationLayoutBinding
+
 import net.nov.materialdesign.view.constraint.ConstraintFragment
 import net.nov.materialdesign.view.coordinator.CoordinatorFragment
 import net.nov.materialdesign.view.motion.MotionFragment
+import net.nov.materialdesign.view.recycler.RecyclerActivity
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -43,6 +46,13 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.navigation_third -> {
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.container, MotionFragment.newInstance()).addToBackStack("").commit()
+                }
+
+//                R.id.navigation_four -> {
+//                    startActivity(Intent(requireActivity(), AnimationsActivity::class.java))
+//                }
+                R.id.navigation_five -> {
+                    startActivity(Intent(requireActivity(), RecyclerActivity::class.java))
                 }
             }
             dismiss()
