@@ -9,11 +9,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="color_gray">#66000000</color>
+
     <color name="color_green">#51FF00</color>
     <color name="color_black">#070707</color>
 
-    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimary">#00FFC6</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="background">#FAFAFA</color>
 
@@ -24,5 +24,24 @@
 
     <color name="colorAccent">#FFD81B60</color>
     <color name="colorAccent40Alfa">#66D81B60</color>
+    <color name="color_gray">#66000000</color>
+    <color name="color_gray_bad1">#FF0000</color>
+    <color name="color_gray_bad2">#F93535</color>
+    <color name="color_gray_bad3">#FC9191</color>
+    <color name="color_gray_good1">#CCFF0000</color>
+    <color name="color_gray_good2">#99FF0000</color>
+    <color name="color_gray_good3">#66FF0000</color>
+
+
+    <!-- Dark Text Color for Light Background -->
+    <color name="textDarkPrimary">#DE000000</color> <!--DE for %87 opacity-->
+    <color name="textDarkSecondary">#8A000000</color> <!--8A for %54 opacity-->
+    <color name="textDarkDisabled">#61000000</color> <!--61 for %38 opacity-->
+
+    <!-- White Text Color for Dark Background -->
+    <color name="textLightPrimary">#FFFFFF</color> <!--%100 opacity-->
+    <color name="textLightSecondary">#B2FFFFFF</color> <!--B2 for %70 opacity-->
+    <color name="textLightDisabled">#80FFFFFF</color> <!--80 for %50 opacity-->
+    <color name="textLightDisabledDEPRECATED">#4CFFFFFF</color> <!--4C for %30-->
 
 </resources>

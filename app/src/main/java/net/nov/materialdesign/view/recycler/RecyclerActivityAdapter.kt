@@ -76,7 +76,23 @@ class RecyclerActivityAdapter(
         return data[position].first.type
     }
 
-
+    /*override fun onBindViewHolder(
+        holder: BaseViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty())
+            super.onBindViewHolder(holder, position, payloads)
+        else {
+            val combinedChange =
+                createCombinedPayload(payloads as MutableList<Change<Pair<Data, Boolean>>>)
+            val oldData = combinedChange.oldData
+            val newData = combinedChange.newData
+            if (newData.first.someText != oldData.first.someText) {
+                ActivityRecyclerItemMarsBinding.bind(holder.itemView).marsTextView.text = newData.first.someText
+            }
+        }
+    }*/
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int,payloads: MutableList<Any>) {
         if(payloads.isEmpty()){
@@ -142,7 +158,7 @@ class RecyclerActivityAdapter(
 
                 dragHandleImageView.setOnTouchListener{v, event->
                     Log.d("mylogs","setOnTouchListener $event")
-                    if(MotionEventCompat.getActionMasked(event)== MotionEvent.ACTION_DOWN){
+                    if(MotionEventCompat.getActionMasked(event)== MotionEvent.ACTION_DOWN){ // TODO This method will be removed in a future release.
                         onStartDragListener.onStartDrag(this@MarsViewHolder)
                     }
                     false

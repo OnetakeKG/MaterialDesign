@@ -48,9 +48,9 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                         .replace(R.id.container, MotionFragment.newInstance()).addToBackStack("").commit()
                 }
 
-//                R.id.navigation_four -> {
-//                    startActivity(Intent(requireActivity(), AnimationsActivity::class.java))
-//                }
+                R.id.navigation_four -> {
+                    startActivity(Intent(requireActivity(), RecyclerActivity::class.java))
+                }
                 R.id.navigation_five -> {
                     startActivity(Intent(requireActivity(), RecyclerActivity::class.java))
                 }

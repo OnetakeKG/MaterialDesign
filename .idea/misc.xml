@@ -23,9 +23,11 @@
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/drawable/ic_system.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/drawable/ic_telescope.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/drawable/ic_wikipedia.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/drawable/splash_background_drawable.xml" value="0.27685185185185185" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/drawable/swipe_indicator_active.xml" value="1.1428571428571428" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/drawable/swipe_indicator_passive.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/font/aguafina_script.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/font/roboto_thin.xml" value="0.27685185185185185" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_api.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_api_tabitem_earth.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_api_tabitem_mars.xml" value="0.21105072463768115" />
@@ -36,6 +38,9 @@
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_recycler_item_earth.xml" value="0.19746376811594202" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_recycler_item_header.xml" value="0.19746376811594202" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_recycler_item_mars.xml" value="0.19746376811594202" />
+        <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_splash.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_test_button.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/activity_test_text.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/bonus_end.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/bonus_start.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/gufel/AndroidStudioProjects/MaterialDesign/app/src/main/res/layout/bottom_navigation_layout.xml" value="0.20520833333333333" />

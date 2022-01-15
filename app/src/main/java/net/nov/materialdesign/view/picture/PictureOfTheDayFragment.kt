@@ -28,8 +28,8 @@ import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
-    private var _binding: FragmentMainStartBinding? = null
-    val binding: FragmentMainStartBinding
+    private var _binding: FragmentMainBinding? = null
+    val binding: FragmentMainBinding
         get() {
             return _binding!!
         }
@@ -73,14 +73,32 @@ class PictureOfTheDayFragment : Fragment() {
         })
 
         binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId){
-                R.id.yestrday ->{viewModel.sendServerRequest(takeDate(-1))}
-                R.id.today ->{viewModel.sendServerRequest()}
+            when (checkedId) {
+                R.id.yestrday -> {
+                    viewModel.sendServerRequest(takeDate(-1))
+                }
+                R.id.today -> {
+                    viewModel.sendServerRequest()
+                }
             }
         }
 
         setBottomAppBar()
 
+
+        val builder = GuideView.Builder(requireContext())
+            .setTitle("Новая фича")
+            .setContentText("Мы добавили")
+            .setGravity(Gravity.center)
+            //.setDismissType(DismissType.selfView)
+            .setTargetView(binding.inputEditText)
+            .setDismissType(DismissType.anywhere)
+            .setGuideListener(object : GuideListener {
+                override fun onDismiss(view: View?) {
+
+                }
+            })
+        builder.build().show()
     }
 
     private fun takeDate(count: Int): String {
@@ -94,7 +112,8 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun renderData(state: PictureOfTheDayState) {
         when (state) {
-            is PictureOfTheDayState.Error -> { state.error.message
+            is PictureOfTheDayState.Error -> {
+                state.error.message
             }
             is PictureOfTheDayState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
@@ -107,8 +126,23 @@ class PictureOfTheDayFragment : Fragment() {
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.ic_no_photo_vector)
                 }
+                pictureOfTheDayResponseData.explanation?.let {
+
+                    initSpans(it)
+                }
             }
         }
+    }
+
+    private fun initSpans(text:String) {
+        val  r = (1..9999).random()
+        Log.d("mylogs","initSpans ${r}")
+        val requestCallback = FontRequest(
+            "com.google.android.gms.fonts", "com.google.android.gms",
+            "Aguafina Script", R.array.com_google_android_gms_fonts_certs
+        )
+
+
     }
 
     override fun onCreateView(
@@ -116,7 +150,7 @@ class PictureOfTheDayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainStartBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -137,7 +171,7 @@ class PictureOfTheDayFragment : Fragment() {
                 startActivity(Intent(requireContext(), ApiActivity::class.java))
             }
             R.id.api_bottom_activity -> {
-                startActivity(Intent(requireContext(),ApiBottomActivity::class.java))
+                startActivity(Intent(requireContext(), ApiBottomActivity::class.java))
             }
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
                 .replace(
